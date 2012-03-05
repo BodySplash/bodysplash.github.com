@@ -5,45 +5,45 @@ title: Jean-Baptiste Dusseaut
 
 <script type="text/javascript" src="/js/ICanHaz.min.js"></script>
 <script type="text/javascript">
-    google.load("feeds", "1");
-    google.load("jquery", "1.7.1");
 
-    var template = "{{title}}";
+google.load("feeds", "1");
+google.load("jquery", "1.7.1");
 
-    function initialize() {
-        $(function () {
-            var feed = new google.feeds.Feed("http://www.arpinum.fr/feed/");
-            feed.load(showNews);
-        })
+
+
+
+function initialize() {
+    var feed = new google.feeds.Feed("http://www.arpinum.fr/feed/");
+    feed.load(showNews);
+}
+
+
+function showNews(news) {
+    if (!news.error) {
+        var rendu = ich.template_de_news(news.feed);
+        $("#news_holder").append(rendu);
     }
+}
 
-
-    function showNews(news) {
-        if (!news.error) {
-            console.log(news);
-            var rendu = ich.template_de_news(news.feed);
-            $("#news_holder").append(rendu);
-        }
-    }
-
-    google.setOnLoadCallback(initialize);
+google.setOnLoadCallback(initialize);
 </script>
 {% raw %}
 <script id="template_de_news" type="text/x-icanhaz">
     {{#entries}}
     <article>
-        <h4>{{publishedDate}} - <a href="{{link}}">{{title}}</a></h4>
+        <h4><a href="{{link}}">{{title}}</a></h4>
+        {{&contentSnippet}}
     </article>
     {{/entries}}
 </script>
 {% endraw %}
 <section id="intro">
-    <hgroup>
-        <h1>Software craftsman, eXtreme Progammer, Agiliste</h1>
+<hgroup>
+    <h1>Software craftsman, eXtreme Progammer, Agiliste</h1>
 
-        <h2>Ce site a pour but de me présenter, ainsi de centraliser différentes informations sur moi : mes projets,
-            comment me contacter, mon cv.</h2>
-    </hgroup>
+    <h2>Ce site a pour but de me présenter, ainsi de centraliser différentes informations sur moi : mes projets,
+        comment me contacter, mon cv.</h2>
+</hgroup>
 </section>
 
 
@@ -57,7 +57,6 @@ title: Jean-Baptiste Dusseaut
     </section>
     <section class="group2">
         <h3>Services</h3>
-
         <p>À travers Arpinum, moi et mes collègues proposons nos services en tant que formateur et coach d'équipes
             agiles.
             Nous faisons bien sur aussi du développement de logiciels sur mesure.</p>
